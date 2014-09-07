@@ -13,6 +13,8 @@ Imports physics citation graph
 
 # general imports
 import urllib2
+import proj1
+import matplotlib
 
 
 # Code for loading citation graph
@@ -45,6 +47,23 @@ def load_graph(graph_url):
 
 citation_graph = load_graph(CITATION_URL)
 
-#graph_url = "http://storage.googleapis.com/codeskulptor-alg/alg_phys-cite.txt"
+unnormalized_deg_dist = proj1.in_degree_distribution(citation_graph)
 
-print citation_graph
+l1 = sorted(unnormalized_deg_dist.keys())
+
+l2=[]
+for i in l1:
+    temp = unnormalized_deg_dist[i]/27770.0
+    l2.append(temp)
+
+matplotlib.pyplot.loglog(l1,l2)
+matplotlib.pyplot.title("Log/Log plot of normalized in-degree distribution")
+matplotlib.pyplot.ylabel("Probability of in-degree")
+matplotlib.pyplot.xlabel("# of in-degree")
+
+#file = open("whereami.txt", "w")
+#
+#for key in unnormalized_deg_dist.keys():
+#    file.write(repr(key) + "\n")
+#file.close()
+
