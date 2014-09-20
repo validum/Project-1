@@ -49,21 +49,18 @@ citation_graph = load_graph(CITATION_URL)
 
 unnormalized_deg_dist = proj1.in_degree_distribution(citation_graph)
 
-l1 = sorted(unnormalized_deg_dist.keys())
+l1 = unnormalized_deg_dist.keys()
 
 l2=[]
 for i in l1:
     temp = unnormalized_deg_dist[i]/27770.0
     l2.append(temp)
 
-matplotlib.pyplot.loglog(l1,l2)
+matplotlib.pyplot.plot(l1,l2, "o")
 matplotlib.pyplot.title("Log/Log plot of normalized in-degree distribution")
 matplotlib.pyplot.ylabel("Probability of in-degree")
 matplotlib.pyplot.xlabel("# of in-degree")
+matplotlib.pyplot.yscale("log")
+matplotlib.pyplot.xscale("log")
 
-#file = open("whereami.txt", "w")
-#
-#for key in unnormalized_deg_dist.keys():
-#    file.write(repr(key) + "\n")
-#file.close()
 
