@@ -14,17 +14,13 @@ m = 13
 num_nodes = 27770
 V = range(m)
 E = proj1.make_complete_graph(m)
-population = []
-for node in V:
-    for item in V:
-        population.append(item)
+population = V*len(V)
 
 
 for new_node in range(m,num_nodes):
     pop_prime = []    
     for idx in range(m):
         pop_prime.append(random.choice(population))
-    pop_prime.sort()        
     pop_prime = set(pop_prime)
     population.append(new_node)
     population.extend(pop_prime)
@@ -40,6 +36,7 @@ l2=[]
 for i in l1:
     temp = unnormalized_deg_dist[i]/27770.0
     l2.append(temp)
+
 
 matplotlib.pyplot.plot(l1,l2, 'o')
 matplotlib.pyplot.title("Log/Log plot of normalized in-degree distribution")
